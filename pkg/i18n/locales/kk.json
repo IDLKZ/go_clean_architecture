@@ -1,0 +1,82 @@
+[
+  {
+    "id": "welcome",
+    "translation": "Қош келдіңіз"
+  },
+  {
+    "id": "api.version",
+    "translation": "API нұсқасы {{.Version}}"
+  },
+  {
+    "id": "error.not_found",
+    "translation": "Сұралған ресурс табылмады"
+  },
+  {
+    "id": "error.internal_server",
+    "translation": "Сервердің ішкі қатесі"
+  },
+  {
+    "id": "error.bad_request",
+    "translation": "Жарамсыз сұрау"
+  },
+  {
+    "id": "error.unauthorized",
+    "translation": "Авторизация қажет"
+  },
+  {
+    "id": "error.forbidden",
+    "translation": "Қол жеткізу тыйым салынған"
+  },
+  {
+    "id": "role.created",
+    "translation": "Рөл сәтті жасалды"
+  },
+  {
+    "id": "role.updated",
+    "translation": "Рөл сәтті жаңартылды"
+  },
+  {
+    "id": "role.deleted",
+    "translation": "Рөл сәтті жойылды"
+  },
+  {
+    "id": "role.not_found",
+    "translation": "Рөл табылмады"
+  },
+  {
+    "id": "permission.created",
+    "translation": "Рұқсат сәтті жасалды"
+  },
+  {
+    "id": "permission.updated",
+    "translation": "Рұқсат сәтті жаңартылды"
+  },
+  {
+    "id": "permission.deleted",
+    "translation": "Рұқсат сәтті жойылды"
+  },
+  {
+    "id": "permission.not_found",
+    "translation": "Рұқсат табылмады"
+  },
+  {
+    "id": "validation.required",
+    "translation": "{{.Field}} өрісін толтыру міндетті"
+  },
+  {
+    "id": "validation.min_length",
+    "translation": "{{.Field}} өрісі кемінде {{.Min}} таңбадан тұруы керек"
+  },
+  {
+    "id": "validation.max_length",
+    "translation": "{{.Field}} өрісі ең көбі {{.Max}} таңбадан тұруы керек"
+  },
+  {
+    "id": "validation.invalid_uuid",
+    "translation": "UUID форматы жарамсыз"
+  },
+  {
+    "id": "success.operation",
+    "translation": "Операция сәтті орындалды"
+  }
+]

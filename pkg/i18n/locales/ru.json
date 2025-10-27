@@ -1,0 +1,82 @@
+[
+  {
+    "id": "welcome",
+    "translation": "Добро пожаловать"
+  },
+  {
+    "id": "api.version",
+    "translation": "API версия {{.Version}}"
+  },
+  {
+    "id": "error.not_found",
+    "translation": "Запрашиваемый ресурс не найден"
+  },
+  {
+    "id": "error.internal_server",
+    "translation": "Внутренняя ошибка сервера"
+  },
+  {
+    "id": "error.bad_request",
+    "translation": "Неверный запрос"
+  },
+  {
+    "id": "error.unauthorized",
+    "translation": "Требуется авторизация"
+  },
+  {
+    "id": "error.forbidden",
+    "translation": "Доступ запрещен"
+  },
+  {
+    "id": "role.created",
+    "translation": "Роль успешно создана"
+  },
+  {
+    "id": "role.updated",
+    "translation": "Роль успешно обновлена"
+  },
+  {
+    "id": "role.deleted",
+    "translation": "Роль успешно удалена"
+  },
+  {
+    "id": "role.not_found",
+    "translation": "Роль не найдена"
+  },
+  {
+    "id": "permission.created",
+    "translation": "Разрешение успешно создано"
+  },
+  {
+    "id": "permission.updated",
+    "translation": "Разрешение успешно обновлено"
+  },
+  {
+    "id": "permission.deleted",
+    "translation": "Разрешение успешно удалено"
+  },
+  {
+    "id": "permission.not_found",
+    "translation": "Разрешение не найдено"
+  },
+  {
+    "id": "validation.required",
+    "translation": "Поле {{.Field}} обязательно для заполнения"
+  },
+  {
+    "id": "validation.min_length",
+    "translation": "Поле {{.Field}} должно содержать минимум {{.Min}} символов"
+  },
+  {
+    "id": "validation.max_length",
+    "translation": "Поле {{.Field}} должно содержать максимум {{.Max}} символов"
+  },
+  {
+    "id": "validation.invalid_uuid",
+    "translation": "Неверный формат UUID"
+  },
+  {
+    "id": "success.operation",
+    "translation": "Операция успешно выполнена"
+  }
+]

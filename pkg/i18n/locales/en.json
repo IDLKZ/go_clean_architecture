@@ -1,0 +1,82 @@
+[
+  {
+    "id": "welcome",
+    "translation": "Welcome"
+  },
+  {
+    "id": "api.version",
+    "translation": "API version {{.Version}}"
+  },
+  {
+    "id": "error.not_found",
+    "translation": "The requested resource was not found"
+  },
+  {
+    "id": "error.internal_server",
+    "translation": "Internal server error"
+  },
+  {
+    "id": "error.bad_request",
+    "translation": "Bad request"
+  },
+  {
+    "id": "error.unauthorized",
+    "translation": "Authorization required"
+  },
+  {
+    "id": "error.forbidden",
+    "translation": "Access forbidden"
+  },
+  {
+    "id": "role.created",
+    "translation": "Role created successfully"
+  },
+  {
+    "id": "role.updated",
+    "translation": "Role updated successfully"
+  },
+  {
+    "id": "role.deleted",
+    "translation": "Role deleted successfully"
+  },
+  {
+    "id": "role.not_found",
+    "translation": "Role not found"
+  },
+  {
+    "id": "permission.created",
+    "translation": "Permission created successfully"
+  },
+  {
+    "id": "permission.updated",
+    "translation": "Permission updated successfully"
+  },
+  {
+    "id": "permission.deleted",
+    "translation": "Permission deleted successfully"
+  },
+  {
+    "id": "permission.not_found",
+    "translation": "Permission not found"
+  },
+  {
+    "id": "validation.required",
+    "translation": "Field {{.Field}} is required"
+  },
+  {
+    "id": "validation.min_length",
+    "translation": "Field {{.Field}} must contain at least {{.Min}} characters"
+  },
+  {
+    "id": "validation.max_length",
+    "translation": "Field {{.Field}} must contain at most {{.Max}} characters"
+  },
+  {
+    "id": "validation.invalid_uuid",
+    "translation": "Invalid UUID format"
+  },
+  {
+    "id": "success.operation",
+    "translation": "Operation completed successfully"
+  }
+]

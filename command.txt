@@ -1,0 +1,3 @@
+#https://sourceforge.net/projects/gnuwin32/ для Windows - make command
+
+migrate -path data/db/schema -database "postgres://postgres:root@localhost:5432/go_clean_arch?sslmode=disable" up
