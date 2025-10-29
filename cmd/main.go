@@ -2,24 +2,19 @@ package main
 
 import (
 	"clean_architecture_fiber/cmd/seed"
-	"clean_architecture_fiber/cmd/server"
 	"clean_architecture_fiber/config"
+	"clean_architecture_fiber/core/dependecy_injection"
 	i18nPkg "clean_architecture_fiber/pkg/i18n"
 	"context"
-	"github.com/jackc/pgx/v5/pgxpool"
 	"log"
-	"os"
-	"os/signal"
-	"syscall"
+
+	"github.com/jackc/pgx/v5/pgxpool"
+	"go.uber.org/fx"
 )
 
 // main является точкой входа в приложение
 // Инициализирует конфигурацию, подключение к БД, i18n, запускает сидеры и Fiber сервер
 func main() {
-	// Создаем контекст с возможностью отмены
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
-
 	// Инициализируем систему локализации (i18n)
 	log.Println("🌍 Initializing i18n...")
 	if err := i18nPkg.Init(); err != nil {
@@ -27,39 +22,27 @@ func main() {
 	}
 	log.Printf("✅ i18n initialized (supported languages: %v)", i18nPkg.SupportedLanguages)
 
-	// Загружаем конфигурацию приложения
-	log.Println("📋 Loading application configuration...")
-	cfg := config.LoadAppConfig()
+	// Создаем Fx приложение с DI контейнером
+	app := fx.New(
+		// Предоставляем конфигурацию
+		fx.Provide(func() *config.Config {
+			log.Println("📋 Loading application configuration...")
+			return config.LoadAppConfig()
+		}),
+		// Подключаем основной модуль приложения
+		dependecy_injection.AppModule,
+		// Запускаем сидеры после инициализации БД
+		fx.Invoke(func(lc fx.Lifecycle, pool *pgxpool.Pool) {
+			lc.Append(fx.Hook{
+				OnStart: func(ctx context.Context) error {
+					log.Println("🌱 Running database seeders...")
+					seed.RunSeeders(ctx, pool)
+					return nil
+				},
+			})
+		}),
+	)
 
-	// Получаем DSN для подключения к базе данных
-	dsn := cfg.GetDatabaseURL()
-	log.Printf("🔌 Connecting to database: %s", cfg.Database.Name)
-
-	// Создаем пул подключений к PostgreSQL
-	pool, err := pgxpool.New(ctx, dsn)
-	if err != nil {
-		log.Fatalf("❌ Failed to connect to database: %v", err)
-	}
-	defer pool.Close()
-
-	// Проверяем подключение к базе данных
-	if err := pool.Ping(ctx); err != nil {
-		log.Fatalf("❌ Failed to ping database: %v", err)
-	}
-	log.Println("✅ Database connection established")
-
-	// Запускаем сидеры для инициализации базовых данных
-	log.Println("🌱 Running database seeders...")
-	seed.RunSeeders(ctx, pool)
-
-	// Настраиваем и запускаем Fiber сервер
-	log.Printf("🚀 Starting %s server on port %d...", cfg.App.Name, cfg.App.Port)
-	server.SettleFiberApp(cfg, ctx, pool)
-
-	// Ожидание сигнала завершения (Ctrl+C, SIGTERM)
-	quit := make(chan os.Signal, 1)
-	signal.Notify(quit, os.Interrupt, syscall.SIGTERM)
-	<-quit
-
-	log.Println("🛑 Shutting down server gracefully...")
+	// Запускаем приложение и ждем сигнала завершения
+	app.Run()
 }

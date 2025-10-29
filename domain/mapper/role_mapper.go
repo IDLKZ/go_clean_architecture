@@ -21,7 +21,8 @@ func RoleRDTOFromRoleSQLC(ctx *fiber.Ctx, roleSQLC *generated.GetRoleByValueRow)
 		roleID := uuidToString(roleSQLC.ID)
 
 		// Обрабатываем timestamps с учетом их валидности
-		var createdAt, updatedAt, deletedAt time.Time
+		var createdAt, updatedAt time.Time
+		var deletedAt *time.Time
 
 		if roleSQLC.CreatedAt.Valid {
 			createdAt = roleSQLC.CreatedAt.Time
@@ -33,7 +34,8 @@ func RoleRDTOFromRoleSQLC(ctx *fiber.Ctx, roleSQLC *generated.GetRoleByValueRow)
 
 		// DeletedAt может быть nil (если роль не удалена)
 		if roleSQLC.DeletedAt.Valid {
-			deletedAt = roleSQLC.DeletedAt.Time
+			t := roleSQLC.DeletedAt.Time
+			deletedAt = &t
 		}
 
 		return &dto.RoleRDTO{

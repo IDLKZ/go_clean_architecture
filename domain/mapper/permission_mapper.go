@@ -20,7 +20,8 @@ func PermissionRDTOFromPermissionSQLC(ctx *fiber.Ctx, permissionSQLC generated.P
 	permissionID := uuidToString(permissionSQLC.ID)
 
 	// Обрабатываем timestamps с учетом их валидности
-	var createdAt, updatedAt, deletedAt time.Time
+	var createdAt, updatedAt time.Time
+	var deletedAt *time.Time
 
 	if permissionSQLC.CreatedAt.Valid {
 		createdAt = permissionSQLC.CreatedAt.Time
@@ -32,7 +33,8 @@ func PermissionRDTOFromPermissionSQLC(ctx *fiber.Ctx, permissionSQLC generated.P
 
 	// DeletedAt может быть nil (если разрешение не удалено)
 	if permissionSQLC.DeletedAt.Valid {
-		deletedAt = permissionSQLC.DeletedAt.Time
+		t := permissionSQLC.DeletedAt.Time
+		deletedAt = &t
 	}
 
 	return dto.PermissionRDTO{
